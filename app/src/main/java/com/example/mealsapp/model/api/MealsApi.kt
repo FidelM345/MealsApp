@@ -20,11 +20,12 @@ class MealsWebservice {
     }
     //the Call wrapper class allows us to call or execute our api and wait for a response.
     //Apart from receiving data we can also get additional Http information of whether our api call was successful or not.
-    fun getMeals(): Call<MealsCategoryResponse> {
+    suspend fun getMeals(): MealsCategoryResponse {
       return  api.getMeals()
     }
     interface MealsApi{
         @GET("categories.php")
-        fun getMeals(): Call<MealsCategoryResponse>
+        suspend fun getMeals():MealsCategoryResponse //we are able to use suspend functions here
+        //because retrofit supports suspend functions.
     }
 }
